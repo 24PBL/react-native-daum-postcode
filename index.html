@@ -4,8 +4,13 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script src="https://t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+    <style>
+        body { margin: 0; }
+        #postcode-container { width: 100%; height: 100vh; }
+    </style>
 </head>
 <body>
+    <div id="postcode-container"></div>
     <script>
         new daum.Postcode({
             oncomplete: function(data) {
@@ -13,8 +18,10 @@
                     zonecode: data.zonecode,
                     address: data.roadAddress || data.jibunAddress
                 }));
-            }
-        }).open();
+            },
+            width: "100%",
+            height: "100%"
+        }).embed(document.getElementById("postcode-container"));
     </script>
 </body>
 </html>
